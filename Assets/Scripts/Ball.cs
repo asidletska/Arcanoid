@@ -3,7 +3,7 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
   public new Rigidbody2D rigidbody {  get; private set; }
-    public float speed = 10f;
+    public float speed = 20f;
 
     private void Awake()
     {
@@ -19,7 +19,9 @@ public class Ball : MonoBehaviour
         force.x = Random.Range(-1f, 1f);
         force.y = -1f;
         rigidbody.AddForce(force.normalized * speed);
+
     }
+
     public void ResetBall()
     {
         transform.position = Vector2.zero;
