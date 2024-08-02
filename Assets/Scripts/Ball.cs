@@ -1,32 +1,38 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class Ball : MonoBehaviour
 {
-  public new Rigidbody2D rigidbody {  get; private set; }
-    public float speed = 20f;
+    private Rigidbody2D rb;
+    public float speed = 10f;
 
     private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
+
     private void Start()
     {
-       ResetBall();
-    }
-    private void SetRandomTrajectory()
-    {
-        Vector2 force = Vector2.zero;
-        force.x = Random.Range(-1f, 1f);
-        force.y = -1f;
-        rigidbody.AddForce(force.normalized * speed);
-
+        ResetBall();
     }
 
     public void ResetBall()
     {
+        rb.velocity = Vector2.zero;
         transform.position = Vector2.zero;
-        rigidbody.velocity = Vector2.zero;
+
+        CancelInvoke();
         Invoke(nameof(SetRandomTrajectory), 1f);
     }
 
+    private void SetRandomTrajectory()
+    {
+        Vector2 force = new Vector2(Random.Range(-1f, 1f), -1f);
+        rb.AddForce(force.normalized * speed, ForceMode2D.Impulse);
+    }
+
+    private void FixedUpdate()
+    {
+        rb.velocity = rb.velocity.normalized * speed;
+    }
 }
