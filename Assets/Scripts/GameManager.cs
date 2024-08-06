@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public int level = 1;
     public int score = 0;
     public int lives = 3;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -48,7 +49,6 @@ public class GameManager : MonoBehaviour
     }
     private void GameOver()
     {
-        //SceneManager.LoadScene();
         NewGame();
     }
     public void Miss()

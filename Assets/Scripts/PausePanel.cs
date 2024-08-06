@@ -17,6 +17,7 @@ public class PausePanel : MonoBehaviour
     public void RestartHandler()
     {
         FindObjectOfType<GameManager>().NewGame();
+        Time.timeScale = 1f;
     }
     public void MenuHandler()
     {

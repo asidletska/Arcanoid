@@ -170,6 +170,7 @@ MonoBehaviour:
   level: 1
   score: 0
   lives: 3
+  gameoverPanel: {fileID: 8985645685647787754, guid: f43ffc71144f79146a2f031ac08b72fd, type: 3}
 --- !u!1 &1901771304
 GameObject:
   m_ObjectHideFlags: 0
