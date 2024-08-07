@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public UnityEvent BallMiss;
     public Ball ball {  get; private set; }
     public Paddle paddle { get; private set; }
     public Brick[] bricks { get; private set; }
@@ -23,7 +25,7 @@ public class GameManager : MonoBehaviour
     {
         score = 0;
         lives = 3;
-        LoadLevel(1);
+        LoadLevel(level);
     }
     private void LoadLevel (int level)
     {
@@ -57,10 +59,12 @@ public class GameManager : MonoBehaviour
 
         if (lives > 0)
         {
+            BallMiss.Invoke();
             ResetLevel();
         }
         else
         {
+            BallMiss.Invoke();
             GameOver();
         }
 
